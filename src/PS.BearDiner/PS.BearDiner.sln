@@ -13,9 +13,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Api", "PS.Bear
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Infrastructure", "PS.BearDiner.Infrastructure", "{CE50BFFC-2B85-4FDA-B378-64A11DC758B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{508C93F1-1495-4CA0-BFD7-2EC575103DF4}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{508C93F1-1495-4CA0-BFD7-2EC575103DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508C93F1-1495-4CA0-BFD7-2EC575103DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508C93F1-1495-4CA0-BFD7-2EC575103DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508C93F1-1495-4CA0-BFD7-2EC575103DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{508C93F1-1495-4CA0-BFD7-2EC575103DF4} = {DE910A41-6E47-4042-A39E-461A90BA55DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7615258-6E27-4EBF-9E75-618B8F737CFE}
