@@ -1,4 +1,4 @@
-namespace PS.BearDiner.Api
+﻿namespace PS.BearDiner.Api
 {
     public class WeatherForecast
     {
@@ -11,3 +11,6 @@ namespace PS.BearDiner.Api
         public string? Summary { get; set; }
     }
 }
+//Очистить все комментарии
+//Удалить все лишнии методы
+//Удалить все лишнии классы
