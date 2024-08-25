@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Application", "PS.BearDiner.Application", "{317CD143-C464-41C6-BBD6-049EC52809FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Contracts", "PS.BearDiner.Contracts", "{C065436B-82A8-423B-9E73-56E1138CFEA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Domain", "PS.BearDiner.Domain", "{9EB439B8-373E-4C49-9E12-81C37B671174}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Api", "PS.BearDiner.Api", "{DE910A41-6E47-4042-A39E-461A90BA55DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PS.BearDiner.Infrastructure", "PS.BearDiner.Infrastructure", "{CE50BFFC-2B85-4FDA-B378-64A11DC758B9}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7615258-6E27-4EBF-9E75-618B8F737CFE}
+	EndGlobalSection
+EndGlobal
