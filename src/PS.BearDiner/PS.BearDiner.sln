@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DE910A41-6E4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CE50BFFC-2B85-4FDA-B378-64A11DC758B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.BearDiner.Application", "PS.BearDiner.Application\PS.BearDiner.Application.csproj", "{4C782917-6DB5-40BE-8121-314419F9D653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Application", "PS.BearDiner.Application\PS.BearDiner.Application.csproj", "{4C782917-6DB5-40BE-8121-314419F9D653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.BearDiner.Contracts", "PS.BearDiner.Contracts\PS.BearDiner.Contracts.csproj", "{1406CD4F-51D6-4724-A114-6BC9217AA085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Contracts", "PS.BearDiner.Contracts\PS.BearDiner.Contracts.csproj", "{1406CD4F-51D6-4724-A114-6BC9217AA085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.BearDiner.Domain", "PS.BearDiner.Domain\PS.BearDiner.Domain.csproj", "{C8B90068-8076-49FD-94ED-9B2B063DDB02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Domain", "PS.BearDiner.Domain\PS.BearDiner.Domain.csproj", "{C8B90068-8076-49FD-94ED-9B2B063DDB02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.BearDiner.Infrastructure", "PS.BearDiner.Infrastructure\PS.BearDiner.Infrastructure.csproj", "{15CF2AB7-9CB3-48B4-9ED7-0CFFA928E48D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Infrastructure", "PS.BearDiner.Infrastructure\PS.BearDiner.Infrastructure.csproj", "{15CF2AB7-9CB3-48B4-9ED7-0CFFA928E48D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.BearDiner.Api", "PS.BearDiner.Api\PS.BearDiner.Api.csproj", "{C77FD7CD-99D3-41F9-851D-F1F72997B2E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Api", "PS.BearDiner.Api\PS.BearDiner.Api.csproj", "{C77FD7CD-99D3-41F9-851D-F1F72997B2E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
