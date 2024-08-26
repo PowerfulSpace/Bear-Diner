@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PS.BearDiner.Application\PS.BearDiner.Application.csproj" />
     <ProjectReference Include="..\PS.BearDiner.Contracts\PS.BearDiner.Contracts.csproj" />
     <ProjectReference Include="..\PS.BearDiner.Infrastructure\PS.BearDiner.Infrastructure.csproj" />
