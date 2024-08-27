@@ -4,7 +4,7 @@ using PS.BearDiner.Contracts.Authentication;
 namespace PS.BearDiner.Api.Controllers
 {
     [ApiController]
-    [Route("[auth]")]
+    [Route("[controller]")]
     public class AuthenticationController : ControllerBase
     {
         [HttpPost("register")]
