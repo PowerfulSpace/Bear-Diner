@@ -8,9 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{C065436B-82A8-423B-9E73-56E1138CFEA0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{9EB439B8-373E-4C49-9E12-81C37B671174}"
-	ProjectSection(SolutionItems) = preProject
-		PS.BearDiner.Contracts\Authentication\LoginRequest.cs = PS.BearDiner.Contracts\Authentication\LoginRequest.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CE50BFFC-2B85-4FDA-B378-64A11DC758B9}"
 EndProject
