@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PS.BearDiner.Application.Common.Interfaces;
+using PS.BearDiner.Infrastructure.Autentication;
 
 
 namespace PS.BearDiner.Infrastructure
@@ -7,6 +9,8 @@ namespace PS.BearDiner.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
             return services;
         }
     }
