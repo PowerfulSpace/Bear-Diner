@@ -1,15 +1,29 @@
-﻿namespace PS.BearDiner.Application.Services.Authentication
+﻿using PS.BearDiner.Application.Common.Interfaces;
+
+namespace PS.BearDiner.Application.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator)
+        {
+            _jwtTokenGenerator = jwtTokenGenerator;
+        }
+
         public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
+            Guid userID = Guid.NewGuid();
+
+            var token = _jwtTokenGenerator.GenerateToken(userID, firstName, lastName);
+
+
+
             return new AuthenticationResult(
-                Guid.NewGuid(),
+                userID,
                 firstName,
                 lastName,
                 email,
-                "token"
+                token
                 );
         }
         
