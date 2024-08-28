@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{C065436B-82A8-423B-9E73-56E1138CFEA0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{9EB439B8-373E-4C49-9E12-81C37B671174}"
+	ProjectSection(SolutionItems) = preProject
+		PS.BearDiner.Contracts\Authentication\LoginRequest.cs = PS.BearDiner.Contracts\Authentication\LoginRequest.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CE50BFFC-2B85-4FDA-B378-64A11DC758B9}"
 EndProject
@@ -21,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Infrastructure
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{C4A3D672-7BA7-4DDE-A44D-F992F1D6B2CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.BearDiner.Api", "PS.BearDiner.Api\PS.BearDiner.Api.csproj", "{3DD179ED-A49C-48E3-AA5A-B514776F6394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.BearDiner.Api", "PS.BearDiner.Api\PS.BearDiner.Api.csproj", "{3DD179ED-A49C-48E3-AA5A-B514776F6394}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
