@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PS.BearDiner.Application.Common.Interfaces;
+using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Infrastructure.Autentication;
 
 
