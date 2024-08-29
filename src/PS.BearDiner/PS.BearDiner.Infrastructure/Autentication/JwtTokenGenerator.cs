@@ -11,7 +11,7 @@ namespace PS.BearDiner.Infrastructure.Autentication
         public string GenerateToken(Guid id, string firstName, string lastName)
         {
             var signingCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super-secret-key")),
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super-secret-keysuper-secret-key")),
                 SecurityAlgorithms.HmacSha256
                 );
 
