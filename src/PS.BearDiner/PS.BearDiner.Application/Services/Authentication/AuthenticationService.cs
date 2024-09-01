@@ -30,16 +30,12 @@ namespace PS.BearDiner.Application.Services.Authentication
                 Password = password
             };
 
+            _userRepository.AddUser(user);
 
-
-            Guid userID = Guid.NewGuid();
-
-            var token = _jwtTokenGenerator.GenerateToken(userID, firstName, lastName);
-
-
+            var token = _jwtTokenGenerator.GenerateToken(user.Id, firstName, lastName);
 
             return new AuthenticationResult(
-                userID,
+                user.Id,
                 firstName,
                 lastName,
                 email,
@@ -50,12 +46,26 @@ namespace PS.BearDiner.Application.Services.Authentication
 
         public AuthenticationResult Login(string email, string password)
         {
+            if (_userRepository.GetUserByEmai(email) is null)
+            {
+                throw new Exception("User is not exists.");
+            }
+
+            var user = _userRepository.GetUserByEmai(email);
+
+            if(user.Password != password)
+            {
+                throw new Exception("Invalid password");
+            }
+
+            var token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
+
             return new AuthenticationResult(
-               Guid.NewGuid(),
-               "firstName",
-               "lastName",
-               email,
-               "token"
+               user.Id,
+               user.FirstName,
+               user.LastName,
+               user.Email,
+               token
                );
         }
     }
