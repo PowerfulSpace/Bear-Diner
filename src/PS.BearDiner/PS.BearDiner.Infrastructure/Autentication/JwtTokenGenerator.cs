@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Services;
+using PS.BearDiner.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -19,7 +20,7 @@ namespace PS.BearDiner.Infrastructure.Autentication
         }
 
 
-        public string GenerateToken(Guid id, string firstName, string lastName)
+        public string GenerateToken(User user)
         {
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
@@ -28,9 +29,9 @@ namespace PS.BearDiner.Infrastructure.Autentication
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub,id.ToString()),
-                new Claim(JwtRegisteredClaimNames.GivenName,firstName),
-                new Claim(JwtRegisteredClaimNames.FamilyName,lastName)
+                new Claim(JwtRegisteredClaimNames.Sub,user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.GivenName,user.FirstName),
+                new Claim(JwtRegisteredClaimNames.FamilyName,user.LastName)
             };
 
             
