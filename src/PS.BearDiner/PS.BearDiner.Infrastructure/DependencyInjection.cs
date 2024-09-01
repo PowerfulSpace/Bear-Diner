@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
+using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Application.Common.Interfaces.Services;
 using PS.BearDiner.Infrastructure.Autentication;
+using PS.BearDiner.Infrastructure.Persistence;
 using PS.BearDiner.Infrastructure.Services;
 
 
@@ -16,6 +18,7 @@ namespace PS.BearDiner.Infrastructure
 
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IDateTimeProvider, DateTimeProvider>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
