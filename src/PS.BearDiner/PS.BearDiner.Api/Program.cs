@@ -23,7 +23,7 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
-    app.UseMiddleware<ErrorHandlingMiddleware>();
+    //app.UseMiddleware<ErrorHandlingMiddleware>();
 
     app.UseHttpsRedirection();
 
