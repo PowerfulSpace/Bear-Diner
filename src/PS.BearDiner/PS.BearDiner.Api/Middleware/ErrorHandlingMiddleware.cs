@@ -32,7 +32,5 @@ namespace PS.BearDiner.Api.Middleware
             context.Response.StatusCode = (int)code;
             return context.Response.WriteAsync(result);
         }
-
-
     }
 }
