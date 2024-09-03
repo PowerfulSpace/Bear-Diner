@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
-namespace PS.BearDiner.Api.Errors
+namespace PS.BearDiner.Api.Common.Errors
 {
     public class BearDinnerProblemDetailsFactory : ProblemDetailsFactory
     {
@@ -35,7 +35,7 @@ namespace PS.BearDiner.Api.Errors
                 Instance = instance
             };
 
-            if(title != null)
+            if (title != null)
             {
                 problemDetails.Title = title;
             }
@@ -69,16 +69,16 @@ namespace PS.BearDiner.Api.Errors
                 Title = title
             };
 
-            ApplyProblemDetailsDefaults(httpContext, problemDetails,statusCode.Value);
+            ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
 
             return problemDetails;
         }
 
-        public void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails,int statusCode)
+        public void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
         {
             problemDetails.Status ??= statusCode;
 
-            if(_options.ClientErrorMapping.TryGetValue(statusCode, out var clientErrorData))
+            if (_options.ClientErrorMapping.TryGetValue(statusCode, out var clientErrorData))
             {
                 problemDetails.Title ??= clientErrorData.Title;
                 problemDetails.Type ??= clientErrorData.Link;
@@ -86,7 +86,7 @@ namespace PS.BearDiner.Api.Errors
 
             var traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
 
-            if(traceId != null)
+            if (traceId != null)
             {
                 problemDetails.Extensions["traceId"] = traceId;
             }
