@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using PS.BearDiner.Api.Errors;
 using PS.BearDiner.Application;
 using PS.BearDiner.Infrastructure;
 
@@ -10,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddControllers();
     //builder.Services.AddControllers(x => x.Filters.Add<ErrorHandingFilterAttribute>());
+
+    builder.Services.AddSingleton<ProblemDetailsFactory, BearDinnerProblemDetailsFactory>();
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
