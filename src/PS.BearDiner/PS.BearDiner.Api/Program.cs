@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
         .AddInfrastructure(builder.Configuration);
 
     builder.Services.AddControllers();
-    //builder.Services.AddControllers(x => x.Filters.Add<ErrorHandingFilterAttribute>());
 
     builder.Services.AddSingleton<ProblemDetailsFactory, BearDinnerProblemDetailsFactory>();
 
@@ -27,21 +26,9 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
-    //app.UseMiddleware<ErrorHandlingMiddleware>();
-
     app.UseExceptionHandler("/error");
 
-    //app.Map("/error", (HttpContext httpContext) =>
-    //{
-    //    Exception? exception = httpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
-
-    //    return Results.Problem();
-    //});
-
     app.UseHttpsRedirection();
-
-    app.UseAuthentication();
-    app.UseAuthorization();
 
     app.MapControllers();
 
