@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using PS.BearDiner.Application;
 using PS.BearDiner.Infrastructure;
 
@@ -25,6 +26,13 @@ var app = builder.Build();
     //app.UseMiddleware<ErrorHandlingMiddleware>();
 
     app.UseExceptionHandler("/error");
+
+    app.Map("/error", (HttpContext httpContext) =>
+    {
+        Exception? exception = httpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+        return Results.Problem();
+    });
 
     app.UseHttpsRedirection();
 
