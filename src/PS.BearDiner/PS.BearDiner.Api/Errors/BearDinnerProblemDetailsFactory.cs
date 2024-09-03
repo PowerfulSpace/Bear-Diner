@@ -40,6 +40,8 @@ namespace PS.BearDiner.Api.Errors
                 problemDetails.Title = title;
             }
 
+            ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
+
             return problemDetails;
         }
 

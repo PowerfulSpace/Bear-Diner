@@ -31,12 +31,12 @@ var app = builder.Build();
 
     app.UseExceptionHandler("/error");
 
-    app.Map("/error", (HttpContext httpContext) =>
-    {
-        Exception? exception = httpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+    //app.Map("/error", (HttpContext httpContext) =>
+    //{
+    //    Exception? exception = httpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-        return Results.Problem();
-    });
+    //    return Results.Problem();
+    //});
 
     app.UseHttpsRedirection();
 
