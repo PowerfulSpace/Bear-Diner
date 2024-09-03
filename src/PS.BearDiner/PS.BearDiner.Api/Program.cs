@@ -1,5 +1,3 @@
-
-using PS.BearDiner.Api.Filters;
 using PS.BearDiner.Application;
 using PS.BearDiner.Infrastructure;
 
@@ -9,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 
-    builder.Services.AddControllers(x => x.Filters.Add<ErrorHandingFilterAttribute>());
+    builder.Services.AddControllers();
+    //builder.Services.AddControllers(x => x.Filters.Add<ErrorHandingFilterAttribute>());
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
@@ -24,6 +23,7 @@ var app = builder.Build();
     }
 
     //app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.UseExceptionHandler("/error");
 
     app.UseHttpsRedirection();
 
