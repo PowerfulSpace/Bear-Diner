@@ -1,13 +1,11 @@
-﻿using ErrorOr;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PS.BearDiner.Application.Services.Authentication;
 using PS.BearDiner.Contracts.Authentication;
 
 namespace PS.BearDiner.Api.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : ApiController
     {
 
         private readonly IAuthenticationService _authenticationService;
@@ -26,9 +24,9 @@ namespace PS.BearDiner.Api.Controllers
                 request.Email,
                 request.Password);
 
-            return authResult.MatchFirst(
+            return authResult.Match(
                 authResult => Ok(MapAuthResult(authResult)),
-                firstError => Problem(statusCode: StatusCodes.Status409Conflict, title: firstError.Description)
+                errors => Problem(errors)
                 );
         }
 
@@ -39,14 +37,12 @@ namespace PS.BearDiner.Api.Controllers
                 request.Email,
                 request.Password);
 
-            var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
+          
 
-            return Ok(response);
+            return authResult.Match(
+               authResult => Ok(MapAuthResult(authResult)),
+               errors => Problem(errors)
+               );
         }
 
         private static AuthenticationResponse MapAuthResult(AuthenticationResult authResult)

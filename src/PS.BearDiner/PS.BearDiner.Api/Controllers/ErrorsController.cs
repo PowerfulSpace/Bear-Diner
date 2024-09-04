@@ -4,7 +4,7 @@ using PS.BearDiner.Application.Common.Errors;
 
 namespace PS.BearDiner.Api.Controllers
 {
-    public class ErrorsController : ControllerBase
+    public class ErrorsController : ApiController
     {
         [ApiExplorerSettings(IgnoreApi = true)]
         [Route("/error")]

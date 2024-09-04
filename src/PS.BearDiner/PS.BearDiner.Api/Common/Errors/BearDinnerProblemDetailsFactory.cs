@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ErrorOr;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
+using PS.BearDiner.Api.Http;
 using System.Diagnostics;
 
 namespace PS.BearDiner.Api.Common.Errors
@@ -35,11 +37,6 @@ namespace PS.BearDiner.Api.Common.Errors
                 Instance = instance
             };
 
-            if (title != null)
-            {
-                problemDetails.Title = title;
-            }
-
             ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
 
             return problemDetails;
@@ -58,7 +55,10 @@ namespace PS.BearDiner.Api.Common.Errors
         {
             statusCode ??= StatusCodes.Status400BadRequest;
 
-            title ??= "One or more validation errors occurred.";
+            if (modelStateDictionary == null)
+            {
+                throw new ArgumentNullException(nameof(modelStateDictionary));
+            }
 
             var problemDetails = new ValidationProblemDetails(modelStateDictionary)
             {
@@ -68,6 +68,11 @@ namespace PS.BearDiner.Api.Common.Errors
                 Instance = instance,
                 Title = title
             };
+
+            if (title != null)
+            {
+                problemDetails.Title = title;
+            }
 
             ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
 
@@ -92,8 +97,12 @@ namespace PS.BearDiner.Api.Common.Errors
             }
 
 
-            problemDetails.Extensions.Add("customProperty", "customProperty");
+            var errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
 
+            if(errors is not null)
+            {
+                problemDetails.Extensions.Add("errorCodes", errors.Select(e => e.Code));
+            }
         }
 
 
