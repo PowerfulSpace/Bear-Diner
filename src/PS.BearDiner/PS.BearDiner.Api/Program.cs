@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using PS.BearDiner.Api.Common.Errors;
 using PS.BearDiner.Application;
