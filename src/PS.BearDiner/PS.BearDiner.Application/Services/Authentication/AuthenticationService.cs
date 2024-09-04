@@ -1,6 +1,7 @@
-﻿using PS.BearDiner.Application.Common.Errors;
+﻿using ErrorOr;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Persistence;
+using PS.BearDiner.Domain.Common.Errors;
 using PS.BearDiner.Domain.Entities;
 
 namespace PS.BearDiner.Application.Services.Authentication
@@ -15,12 +16,12 @@ namespace PS.BearDiner.Application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+        public ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
         {
 
             if (_userRepository.GetUserByEmai(email) is not null)
             {
-                throw new DuplicateEmailException();
+                return Errors.User.DuplicateEmail;
             }
 
             User user = new User
@@ -42,18 +43,16 @@ namespace PS.BearDiner.Application.Services.Authentication
         }
         
 
-        public AuthenticationResult Login(string email, string password)
+        public ErrorOr<AuthenticationResult> Login(string email, string password)
         {
-            if (_userRepository.GetUserByEmai(email) is null)
+            if (_userRepository.GetUserByEmai(email) is not User user)
             {
-                throw new Exception("User is not exists.");
+                return Errors.Authentication.InvalidCredentials;          
             }
-
-            var user = _userRepository.GetUserByEmai(email);
 
             if(user.Password != password)
             {
-                throw new Exception("Invalid password");
+                return Errors.Authentication.InvalidCredentials;
             }
 
             var token = _jwtTokenGenerator.GenerateToken(user);

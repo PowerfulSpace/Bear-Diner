@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ErrorOr;
+using Microsoft.AspNetCore.Mvc;
 using PS.BearDiner.Application.Services.Authentication;
 using PS.BearDiner.Contracts.Authentication;
 
@@ -25,14 +26,10 @@ namespace PS.BearDiner.Api.Controllers
                 request.Email,
                 request.Password);
 
-            var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
-
-            return Ok(response);
+            return authResult.MatchFirst(
+                authResult => Ok(MapAuthResult(authResult)),
+                firstError => Problem(statusCode: StatusCodes.Status409Conflict, title: firstError.Description)
+                );
         }
 
         [HttpPost("login")]
@@ -50,6 +47,16 @@ namespace PS.BearDiner.Api.Controllers
                 authResult.Token);
 
             return Ok(response);
+        }
+
+        private static AuthenticationResponse MapAuthResult(AuthenticationResult authResult)
+        {
+            return new AuthenticationResponse(
+                            authResult.User.Id,
+                            authResult.User.FirstName,
+                            authResult.User.LastName,
+                            authResult.User.Email,
+                            authResult.Token);
         }
     }
 }
