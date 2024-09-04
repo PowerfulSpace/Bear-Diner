@@ -1,4 +1,5 @@
-﻿using PS.BearDiner.Application.Common.Interfaces.Authentication;
+﻿using PS.BearDiner.Application.Common.Errors;
+using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Domain.Entities;
 
@@ -19,7 +20,7 @@ namespace PS.BearDiner.Application.Services.Authentication
 
             if (_userRepository.GetUserByEmai(email) is not null)
             {
-                throw new Exception("User with given email already exists.");
+                throw new DuplicateEmailException();
             }
 
             User user = new User
