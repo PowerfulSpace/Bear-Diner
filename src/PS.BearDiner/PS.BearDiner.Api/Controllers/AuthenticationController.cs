@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ErrorOr;
+using Microsoft.AspNetCore.Mvc;
 using PS.BearDiner.Application.Services.Authentication;
 using PS.BearDiner.Contracts.Authentication;
 
@@ -18,7 +19,7 @@ namespace PS.BearDiner.Api.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            var authResult = _authenticationService.Register(
+            ErrorOr<AuthenticationResult> authResult = _authenticationService.Register(
                 request.FirstName,
                 request.LastName,
                 request.Email,
@@ -33,7 +34,7 @@ namespace PS.BearDiner.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            var authResult = _authenticationService.Login(
+            ErrorOr<AuthenticationResult> authResult = _authenticationService.Login(
                 request.Email,
                 request.Password);
 
