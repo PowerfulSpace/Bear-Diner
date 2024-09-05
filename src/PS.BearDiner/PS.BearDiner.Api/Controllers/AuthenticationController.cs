@@ -37,7 +37,10 @@ namespace PS.BearDiner.Api.Controllers
                 request.Email,
                 request.Password);
 
-          
+            //if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
+            //{
+            //    return Problem(statusCode: StatusCodes.Status401Unauthorized, title: authResult.FirstError.Description);
+            //}
 
             return authResult.Match(
                authResult => Ok(MapAuthResult(authResult)),
