@@ -1,6 +1,8 @@
 ﻿using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
-using PS.BearDiner.Application.Services.Authentication;
+using PS.BearDiner.Application.Services.Authentication.Commands;
+using PS.BearDiner.Application.Services.Authentication.Common;
+using PS.BearDiner.Application.Services.Authentication.Queries;
 using PS.BearDiner.Contracts.Authentication;
 
 namespace PS.BearDiner.Api.Controllers
@@ -9,17 +11,21 @@ namespace PS.BearDiner.Api.Controllers
     public class AuthenticationController : ApiController
     {
 
-        private readonly IAuthenticationService _authenticationService;
-        public AuthenticationController(IAuthenticationService authenticationService)
-        {
-            _authenticationService = authenticationService;
-        }
+        private readonly IAuthenticationCommandService _authenticationCommandService;
+        private readonly IAuthenticationQueryService _uthenticationQueryService;
 
+        public AuthenticationController(
+            IAuthenticationCommandService authenticationCommandService,
+            IAuthenticationQueryService uthenticationQueryService)
+        {
+            _authenticationCommandService = authenticationCommandService;
+            _uthenticationQueryService = uthenticationQueryService;
+        }
 
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationService.Register(
+            ErrorOr<AuthenticationResult> authResult = _authenticationCommandService.Register(
                 request.FirstName,
                 request.LastName,
                 request.Email,
@@ -34,7 +40,7 @@ namespace PS.BearDiner.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationService.Login(
+            ErrorOr<AuthenticationResult> authResult = _uthenticationQueryService.Login(
                 request.Email,
                 request.Password);
 
