@@ -2,7 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PS.BearDiner.Application.Authentication.Commands.Register;
-using PS.BearDiner.Application.Services.Authentication.Common;
+using PS.BearDiner.Application.Authentication.Queries.Login;
+using PS.BearDiner.Application.Authentication.Common;
 using PS.BearDiner.Contracts.Authentication;
 
 namespace PS.BearDiner.Api.Controllers
@@ -10,9 +11,9 @@ namespace PS.BearDiner.Api.Controllers
     [Route("[controller]")]
     public class AuthenticationController : ApiController
     {
-        private readonly IMediator _mediator;
+        private readonly ISender _mediator;
 
-        public AuthenticationController(IMediator mediator)
+        public AuthenticationController(ISender mediator)
         {
             _mediator = mediator;
         }
@@ -35,11 +36,13 @@ namespace PS.BearDiner.Api.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _uthenticationQueryService.Login(
-                request.Email,
-                request.Password);
+            var query = new LoginQuery(
+               request.Email,
+               request.Password);
+
+            ErrorOr<AuthenticationResult> authResult = await _mediator.Send(query);
 
             //if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
             //{

@@ -1,10 +1,10 @@
 ﻿using ErrorOr;
 using MediatR;
+using PS.BearDiner.Application.Authentication.Common;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Persistence;
-using PS.BearDiner.Application.Services.Authentication.Common;
-using PS.BearDiner.Domain.Entities;
 using PS.BearDiner.Domain.Common.Errors;
+using PS.BearDiner.Domain.Entities;
 
 namespace PS.BearDiner.Application.Authentication.Commands.Register
 {

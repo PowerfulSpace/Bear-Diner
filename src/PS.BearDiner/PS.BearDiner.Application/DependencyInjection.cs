@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PS.BearDiner.Application.Services.Authentication.Commands;
-using PS.BearDiner.Application.Services.Authentication.Queries;
 
 namespace PS.BearDiner.Application
 {
@@ -8,8 +6,7 @@ namespace PS.BearDiner.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationCommandService, AuthenticationCommandService>();
-            services.AddScoped<IAuthenticationQueryService, AuthenticationQueryService>();
+            services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
             return services;
         }

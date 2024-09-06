@@ -1,8 +1,8 @@
 ﻿using ErrorOr;
 using MediatR;
-using PS.BearDiner.Application.Services.Authentication.Common;
+using PS.BearDiner.Application.Authentication.Common;
 
-namespace PS.BearDiner.Application.Authentication.Commands.Queries.Login
+namespace PS.BearDiner.Application.Authentication.Queries.Login
 {
     public record LoginQuery(
         string Email,

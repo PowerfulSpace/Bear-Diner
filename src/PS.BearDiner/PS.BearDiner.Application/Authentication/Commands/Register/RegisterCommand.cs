@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
-using PS.BearDiner.Application.Services.Authentication.Common;
+using PS.BearDiner.Application.Authentication.Common;
 
 namespace PS.BearDiner.Application.Authentication.Commands.Register
 {
