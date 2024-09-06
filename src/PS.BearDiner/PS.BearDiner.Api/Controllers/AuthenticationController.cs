@@ -1,8 +1,8 @@
 ﻿using ErrorOr;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PS.BearDiner.Application.Services.Authentication.Commands;
+using PS.BearDiner.Application.Authentication.Commands.Register;
 using PS.BearDiner.Application.Services.Authentication.Common;
-using PS.BearDiner.Application.Services.Authentication.Queries;
 using PS.BearDiner.Contracts.Authentication;
 
 namespace PS.BearDiner.Api.Controllers
@@ -10,26 +10,23 @@ namespace PS.BearDiner.Api.Controllers
     [Route("[controller]")]
     public class AuthenticationController : ApiController
     {
+        private readonly IMediator _mediator;
 
-        private readonly IAuthenticationCommandService _authenticationCommandService;
-        private readonly IAuthenticationQueryService _uthenticationQueryService;
-
-        public AuthenticationController(
-            IAuthenticationCommandService authenticationCommandService,
-            IAuthenticationQueryService uthenticationQueryService)
+        public AuthenticationController(IMediator mediator)
         {
-            _authenticationCommandService = authenticationCommandService;
-            _uthenticationQueryService = uthenticationQueryService;
+            _mediator = mediator;
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationCommandService.Register(
+            var command = new RegisterCommand(
                 request.FirstName,
                 request.LastName,
                 request.Email,
                 request.Password);
+
+            ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
 
             return authResult.Match(
                 authResult => Ok(MapAuthResult(authResult)),
