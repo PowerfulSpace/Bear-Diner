@@ -44,6 +44,8 @@ namespace PS.BearDiner.Api.Controllers
 
             ErrorOr<AuthenticationResult> authResult = await _mediator.Send(query);
 
+            //Использовать этот код для тестов
+
             //if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
             //{
             //    return Problem(statusCode: StatusCodes.Status401Unauthorized, title: authResult.FirstError.Description);
