@@ -1,20 +1,14 @@
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using PS.BearDiner.Api.Common.Errors;
+using PS.BearDiner.Api;
 using PS.BearDiner.Application;
 using PS.BearDiner.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
+        .AddPresentation()
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 
-    builder.Services.AddControllers();
-
-    builder.Services.AddSingleton<ProblemDetailsFactory, BearDinnerProblemDetailsFactory>();
-
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
 }
 
 var app = builder.Build();
