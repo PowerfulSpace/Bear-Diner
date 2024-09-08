@@ -8,11 +8,11 @@ namespace PS.BearDiner.Api
     {
         public static IServiceCollection AddPresentation(this IServiceCollection services)
         {
-            services.AddMappings();
-
             services.AddControllers();
 
             services.AddSingleton<ProblemDetailsFactory, BearDinnerProblemDetailsFactory>();
+
+            services.AddMappings();
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

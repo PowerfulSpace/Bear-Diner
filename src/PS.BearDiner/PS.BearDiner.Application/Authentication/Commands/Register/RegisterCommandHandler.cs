@@ -23,6 +23,7 @@ namespace PS.BearDiner.Application.Authentication.Commands.Register
 
         public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
+            await Task.CompletedTask;
 
             if (_userRepository.GetUserByEmai(command.Email) is not null)
             {
