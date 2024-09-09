@@ -15,9 +15,8 @@ namespace PS.BearDiner.Application
         {
             services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
-            services.AddScoped<
-                IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,
-                ValidationRegisterCommandBehavior>();
+
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
