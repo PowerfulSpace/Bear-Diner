@@ -1,9 +1,6 @@
-﻿using ErrorOr;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using PS.BearDiner.Application.Authentication.Commands.Register;
-using PS.BearDiner.Application.Authentication.Common;
 using PS.BearDiner.Application.Common.Behaviors;
 using System.Reflection;
 
@@ -15,7 +12,6 @@ namespace PS.BearDiner.Application
         {
             services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
-
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -24,3 +20,4 @@ namespace PS.BearDiner.Application
         }
     }
 }
+// запустить приложение !!! проверить дебаг
