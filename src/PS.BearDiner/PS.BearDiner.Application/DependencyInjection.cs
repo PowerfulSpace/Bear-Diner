@@ -1,9 +1,11 @@
 ﻿using ErrorOr;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PS.BearDiner.Application.Authentication.Commands.Register;
 using PS.BearDiner.Application.Authentication.Common;
 using PS.BearDiner.Application.Common.Behaviors;
+using System.Reflection;
 
 namespace PS.BearDiner.Application
 {
@@ -16,6 +18,8 @@ namespace PS.BearDiner.Application
             services.AddScoped<
                 IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,
                 ValidationRegisterCommandBehavior>();
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }
