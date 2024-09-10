@@ -20,4 +20,3 @@ namespace PS.BearDiner.Application
         }
     }
 }
-// запустить приложение !!! проверить дебаг
