@@ -19,4 +19,4 @@ namespace PS.BearDiner.Application
             return services;
         }
     }
-}
+} 
