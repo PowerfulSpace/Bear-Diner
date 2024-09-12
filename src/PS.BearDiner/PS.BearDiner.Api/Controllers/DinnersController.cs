@@ -2,11 +2,14 @@
 
 namespace PS.BearDiner.Api.Controllers
 {
-    public class DinnersController : Controller
+    [Route("[controller]")]
+    public class DinnersController : ApiController
     {
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult ListDinners()
         {
-            return View();
+            var user = HttpContext.User;
+            return Ok(Array.Empty<string>());
         }
     }
 }
