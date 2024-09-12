@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Persistence;
@@ -28,8 +29,10 @@ namespace PS.BearDiner.Infrastructure
         {
             var jwtSettings = new JwtSettings();
             configuration.Bind(JwtSettings.SectionName, jwtSettings);
+            services.AddSingleton(Options.Create(jwtSettings));
 
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
+
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
