@@ -31,7 +31,6 @@ namespace PS.BearDiner.Infrastructure
             configuration.Bind(JwtSettings.SectionName, jwtSettings);
             services.AddSingleton(Options.Create(jwtSettings));
 
-
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
@@ -41,9 +40,9 @@ namespace PS.BearDiner.Infrastructure
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = configuration["JwtSettings:Issuer"],
-                    ValidAudience = configuration["JwtSettings:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]))
+                    ValidIssuer = jwtSettings.Issuer,
+                    ValidAudience = jwtSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
                 });
 
             return services;
