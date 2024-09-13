@@ -31,7 +31,6 @@ namespace PS.BearDiner.Infrastructure
             configuration.Bind(JwtSettings.SectionName, jwtSettings);
             services.AddSingleton(Options.Create(jwtSettings));
 
-            //services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
 
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
