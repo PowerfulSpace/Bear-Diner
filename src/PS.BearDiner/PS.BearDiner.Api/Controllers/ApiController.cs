@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PS.BearDiner.Api.Http;
@@ -6,6 +7,7 @@ using PS.BearDiner.Api.Http;
 namespace PS.BearDiner.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     public class ApiController : ControllerBase
     {
         protected IActionResult Problem(List<Error> errors)

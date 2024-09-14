@@ -6,10 +6,12 @@ using PS.BearDiner.Application.Authentication.Queries.Login;
 using PS.BearDiner.Application.Authentication.Common;
 using PS.BearDiner.Contracts.Authentication;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PS.BearDiner.Api.Controllers
 {
     [Route("[controller]")]
+    [AllowAnonymous]
     public class AuthenticationController : ApiController
     {
         private readonly ISender _mediator;
