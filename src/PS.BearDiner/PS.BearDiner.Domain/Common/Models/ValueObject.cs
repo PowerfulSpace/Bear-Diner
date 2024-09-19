@@ -1,6 +1,6 @@
 ﻿namespace PS.BearDiner.Domain.Common.Models
 {
-    public abstract class ValueObject
+    public abstract class ValueObject : IEquatable<ValueObject>
     {
         public abstract IEnumerable<object> GetEqualityComponents();
 
@@ -23,6 +23,12 @@
             return GetEqualityComponents()
                 .Select(x => x?.GetHashCode() ?? 0)
                 .Aggregate((x, y) => x ^ y);
+        }
+        
+        //Разобрать этот момент
+        public bool Equals(ValueObject? other)
+        {
+            return Equals((object?)other);
         }
 
         public static bool operator ==(ValueObject left, ValueObject right)
