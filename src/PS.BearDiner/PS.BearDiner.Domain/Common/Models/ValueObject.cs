@@ -4,6 +4,16 @@
     {
         public abstract IEnumerable<object> GetEqualityComponents();
 
+
+        public bool Equals(ValueObject? other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+            return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+        }
+
         public override bool Equals(object? obj)
         {
             if(obj is null || obj.GetType != GetType)
@@ -25,11 +35,7 @@
                 .Aggregate((x, y) => x ^ y);
         }
         
-        //Разобрать этот момент
-        public bool Equals(ValueObject? other)
-        {
-            return Equals((object?)other);
-        }
+       
 
         public static bool operator ==(ValueObject left, ValueObject right)
         {
