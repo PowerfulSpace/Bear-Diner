@@ -1,4 +1,5 @@
 ﻿using PS.BearDiner.Domain.Common.Models;
+using PS.BearDiner.Domain.Common.Valueobjects;
 using PS.BearDiner.Domain.Dinner.ValueObjects;
 using PS.BearDiner.Domain.Host.ValueObjects;
 using PS.BearDiner.Domain.Menu.Entities;
@@ -11,7 +12,7 @@ namespace PS.BearDiner.Domain.Menu
     {
         public string Name { get; }
         public string Description { get; }
-        public float AverageRating { get; }
+        public AverageRating AverageRating { get; }
 
         public HostId HostId { get; }
 

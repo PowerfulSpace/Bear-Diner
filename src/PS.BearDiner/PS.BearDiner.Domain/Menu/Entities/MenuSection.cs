@@ -6,8 +6,11 @@ namespace PS.BearDiner.Domain.Menu.Entities
     public sealed class MenuSection : Entity<MenuSectionId>
     {
         private readonly List<MenuItem> _items = new List<MenuItem>();
+        public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
+
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; }        
+        
 
         private MenuSection(MenuSectionId menuSectionId, string name, string description)
             : base(menuSectionId)
@@ -21,6 +24,6 @@ namespace PS.BearDiner.Domain.Menu.Entities
             return new MenuSection(MenuSectionId.CreateUnique(), name, description);
         }
 
-        public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
+        
     }
 }
