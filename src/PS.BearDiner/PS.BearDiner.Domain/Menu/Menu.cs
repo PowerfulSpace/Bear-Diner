@@ -11,8 +11,13 @@ namespace PS.BearDiner.Domain.Menu
         public string Description { get; set; }
         public float AverageRating { get; set; }
 
-        public Menu(MenuId id) : base(id)
+        private Menu(MenuId menuId) : base(menuId)
         {
+        }
+
+        public static Menu Create()
+        {
+
         }
 
         public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
