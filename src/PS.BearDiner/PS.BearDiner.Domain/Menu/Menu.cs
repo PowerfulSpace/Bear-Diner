@@ -10,12 +10,6 @@ namespace PS.BearDiner.Domain.Menu
 {
     public sealed class Menu : AggregateRoot<MenuId>
     {
-        public string Name { get; }
-        public string Description { get; }
-        public AverageRating AverageRating { get; }
-
-        public HostId HostId { get; }
-
         private readonly List<MenuSection> _sections = new List<MenuSection>();
         private readonly List<DinnerId> _dinnersIds = new List<DinnerId>();
         private readonly List<MenuReviewId> _menuReviewId = new List<MenuReviewId>();
@@ -23,6 +17,11 @@ namespace PS.BearDiner.Domain.Menu
         public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
         public IReadOnlyList<DinnerId> DinnersIds => _dinnersIds.AsReadOnly();
         public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewId.AsReadOnly();
+
+        public string Name { get; }
+        public string Description { get; }
+        public AverageRating AverageRating { get; }
+        public HostId HostId { get; }
 
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
