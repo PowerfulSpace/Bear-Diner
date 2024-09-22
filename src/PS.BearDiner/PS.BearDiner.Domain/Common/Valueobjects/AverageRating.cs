@@ -26,6 +26,7 @@ namespace PS.BearDiner.Domain.Common.Valueobjects
         public override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;
+            yield return NumRatings;
         }
     }
 }

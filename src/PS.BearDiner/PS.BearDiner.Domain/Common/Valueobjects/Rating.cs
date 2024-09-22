@@ -11,9 +11,9 @@ namespace PS.BearDiner.Domain.Common.Valueobjects
             Value = value;
         }
 
-        public static Rating CreateNew(int rating)
+        public static Rating CreateNew(int value)
         {
-            return new Rating(rating);
+            return new Rating(value);
         }
 
         public override IEnumerable<object> GetEqualityComponents()
