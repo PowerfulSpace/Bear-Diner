@@ -4,7 +4,7 @@ using PS.BearDiner.Application.Authentication.Common;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Domain.Common.Errors;
-using PS.BearDiner.Domain.User;
+using PS.BearDiner.Domain.Users;
 
 namespace PS.BearDiner.Application.Authentication.Queries.Login
 {

@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using PS.BearDiner.Application.Common.Interfaces.Authentication;
 using PS.BearDiner.Application.Common.Interfaces.Services;
-using PS.BearDiner.Domain.User;
+using PS.BearDiner.Domain.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

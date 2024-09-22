@@ -1,4 +1,4 @@
-﻿namespace PS.BearDiner.Domain.User
+﻿namespace PS.BearDiner.Domain.Users
 {
     public class User
     {
