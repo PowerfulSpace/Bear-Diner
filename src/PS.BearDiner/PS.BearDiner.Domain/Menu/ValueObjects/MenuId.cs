@@ -6,9 +6,9 @@ namespace PS.BearDiner.Domain.Menu.ValueObjects
     {
         public Guid Value { get; }
 
-        private MenuId(Guid id)
+        private MenuId(Guid value)
         {
-            Value = id;
+            Value = value;
         }
 
         public static MenuId CreateUnique()

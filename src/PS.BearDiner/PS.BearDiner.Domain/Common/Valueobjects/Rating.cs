@@ -4,14 +4,14 @@ namespace PS.BearDiner.Domain.Common.Valueobjects
 {
     public sealed class Rating : ValueObject
     {
-        public int Value { get; private set; }
+        public double Value { get; private set; }
 
-        private Rating(int value)
+        private Rating(double value)
         {
             Value = value;
         }
 
-        public static Rating CreateNew(int value)
+        public static Rating CreateNew(double value)
         {
             return new Rating(value);
         }
