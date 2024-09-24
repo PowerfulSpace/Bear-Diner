@@ -2,15 +2,18 @@
 
 namespace PS.BearDiner.Domain.Host.ValueObjects
 {
-    public sealed class HostId : ValueObject
+    public sealed class HostId : AggregateRootId<Guid>
     {
-        public Guid Value { get; }
+        public override Guid Value { get; protected set; }
 
         private HostId(Guid id)
         {
             Value = id;
         }
-
+        public static HostId Create(Guid value)
+        {
+            return new HostId(value);
+        }
         public static HostId CreateUnique()
         {
             return new HostId(Guid.NewGuid());
