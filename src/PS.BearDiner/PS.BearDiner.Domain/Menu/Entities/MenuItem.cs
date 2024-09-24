@@ -1,4 +1,5 @@
 ﻿using PS.BearDiner.Domain.Common.Models;
+using PS.BearDiner.Domain.Dinner.ValueObjects;
 using PS.BearDiner.Domain.Menu.ValueObjects;
 
 namespace PS.BearDiner.Domain.Menu.Entities

@@ -12,11 +12,11 @@ namespace PS.BearDiner.Domain.Menu
     {
         private readonly List<MenuSection> _sections = new List<MenuSection>();
         private readonly List<DinnerId> _dinnersIds = new List<DinnerId>();
-        private readonly List<MenuReviewId> _menuReviewId = new List<MenuReviewId>();
+        private readonly List<MenuReviewId> _menuReviewIds = new List<MenuReviewId>();
 
         public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
         public IReadOnlyList<DinnerId> DinnersIds => _dinnersIds.AsReadOnly();
-        public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewId.AsReadOnly();
+        public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewIds.AsReadOnly();
 
         public string Name { get; }
         public string Description { get; }
