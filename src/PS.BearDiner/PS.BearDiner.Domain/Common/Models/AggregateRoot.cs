@@ -10,7 +10,7 @@
         }
         protected AggregateRoot()
         {
-            
+            Id = default!;
         }
 
     }
