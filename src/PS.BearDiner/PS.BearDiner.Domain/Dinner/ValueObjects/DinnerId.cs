@@ -2,13 +2,18 @@
 
 namespace PS.BearDiner.Domain.Dinner.ValueObjects
 {
-    public sealed class DinnerId : ValueObject
+    public sealed class DinnerId : AggregateRootId<Guid>
     {
-        public Guid Value { get; }
+        public override Guid Value { get; protected set; }
 
         private DinnerId(Guid id)
         {
             Value = id;
+        }
+
+        public static DinnerId Create(Guid value)
+        {
+            return new(value);
         }
 
         public static DinnerId CreateUnique()
@@ -20,5 +25,7 @@ namespace PS.BearDiner.Domain.Dinner.ValueObjects
         {
             yield return Value;
         }
+
+        private DinnerId() { }
     }
 }
