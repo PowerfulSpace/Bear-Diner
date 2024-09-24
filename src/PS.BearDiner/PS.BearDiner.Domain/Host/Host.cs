@@ -3,6 +3,7 @@ using PS.BearDiner.Domain.Common.Valueobjects;
 using PS.BearDiner.Domain.Dinner.ValueObjects;
 using PS.BearDiner.Domain.Host.ValueObjects;
 using PS.BearDiner.Domain.Menu.ValueObjects;
+using PS.BearDiner.Domain.Users.ValueObjects;
 
 namespace PS.BearDiner.Domain.Host
 {
