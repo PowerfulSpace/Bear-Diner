@@ -2,15 +2,18 @@
 
 namespace PS.BearDiner.Domain.MenuReview.ValueObjects
 {
-    public sealed class MenuReviewId : ValueObject
+    public sealed class MenuReviewId : AggregateRootId<Guid>
     {
-        public Guid Value { get; }
+        public override Guid Value { get; protected set; }
 
         private MenuReviewId(Guid id)
         {
             Value = id;
         }
-
+        public static MenuReviewId Create(Guid value)
+        {
+            return new(value);
+        }
         public static MenuReviewId CreateUnique()
         {
             return new MenuReviewId(Guid.NewGuid());
@@ -20,5 +23,7 @@ namespace PS.BearDiner.Domain.MenuReview.ValueObjects
         {
             yield return Value;
         }
+
+        private MenuReviewId() { }
     }
 }
