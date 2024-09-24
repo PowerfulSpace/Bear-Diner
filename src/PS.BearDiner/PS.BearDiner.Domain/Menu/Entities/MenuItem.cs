@@ -1,5 +1,4 @@
 ﻿using PS.BearDiner.Domain.Common.Models;
-using PS.BearDiner.Domain.Dinner.ValueObjects;
 using PS.BearDiner.Domain.Menu.ValueObjects;
 
 namespace PS.BearDiner.Domain.Menu.Entities
@@ -21,5 +20,8 @@ namespace PS.BearDiner.Domain.Menu.Entities
             return new MenuItem(MenuItemId.CreateUnique(), name, description);
         }
 
+#pragma warning disable CS8618
+        private MenuItem() { }
+#pragma warning restore CS8618
     }
 }

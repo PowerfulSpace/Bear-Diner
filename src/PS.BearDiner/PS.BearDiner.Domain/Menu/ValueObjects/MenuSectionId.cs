@@ -10,6 +10,10 @@ namespace PS.BearDiner.Domain.Menu.ValueObjects
         {
             Value = value;
         }
+        public static MenuSectionId Create(Guid value)
+        {
+            return new(value);
+        }
 
         public static MenuSectionId CreateUnique()
         {
@@ -20,5 +24,7 @@ namespace PS.BearDiner.Domain.Menu.ValueObjects
         {
             yield return Value;
         }
+
+        private MenuSectionId() { }
     }
 }

@@ -12,18 +12,21 @@ namespace PS.BearDiner.Domain.Menu.Entities
         public string Description { get; set; }        
         
 
-        private MenuSection(MenuSectionId menuSectionId, string name, string description)
+        private MenuSection(MenuSectionId menuSectionId, string name, string description, List<MenuItem> items)
             : base(menuSectionId)
         {
             Name = name;
             Description = description;
+            _items = items;
         }
 
-        public static MenuSection Create(string name, string description)
+        public static MenuSection Create(string name, string description, List<MenuItem> items)
         {
-            return new MenuSection(MenuSectionId.CreateUnique(), name, description);
+            return new MenuSection(MenuSectionId.CreateUnique(), name, description, items);
         }
 
-        
+#pragma warning disable CS8618
+        private MenuSection() { }
+#pragma warning restore CS8618
     }
 }

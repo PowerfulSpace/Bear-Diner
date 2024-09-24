@@ -1,6 +1,7 @@
 ﻿using PS.BearDiner.Domain.Bill.ValueObjects;
 using PS.BearDiner.Domain.Common.Models;
 using PS.BearDiner.Domain.Dinner.ValueObjects;
+using PS.BearDiner.Domain.Guest.ValueObjects;
 using PS.BearDiner.Domain.Host.ValueObjects;
 
 namespace PS.BearDiner.Domain.Bill
@@ -14,7 +15,7 @@ namespace PS.BearDiner.Domain.Bill
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
 
-        private Bill(BillId id, DinnerId dinnerId, Guest guestId, HostId hostId, Price price, DateTime createdDateTime, DateTime updatedDateTime) 
+        private Bill(BillId id, GuestId guestId, HostId hostId, Price price, DateTime createdDateTime, DateTime updatedDateTime) 
             : base(id)
         {
             GuestId = guestId;
@@ -24,10 +25,13 @@ namespace PS.BearDiner.Domain.Bill
             UpdatedDateTime = updatedDateTime;
         }
 
-        public static Bill Create(Guest guestId, HostId hostId, Price price)
+        public static Bill Create(GuestId guestId, HostId hostId, Price price)
         {
             return new Bill(BillId.CreateUnique(), guestId, hostId, price, DateTime.UtcNow, DateTime.UtcNow);
         }
 
+#pragma warning disable CS8618
+        private Bill() { }
+#pragma warning restore CS8618
     }
 }

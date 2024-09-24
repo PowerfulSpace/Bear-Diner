@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Guest\" />
     <Folder Include="Reservation\" />
     <Folder Include="GuestRating\" />
   </ItemGroup>
