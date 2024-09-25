@@ -1,6 +1,6 @@
 ﻿using PS.BearDiner.Domain.Common.Models;
 
-namespace PS.BearDiner.Domain.Users.ValueObjects
+namespace PS.BearDiner.Domain.UsersAggregate.ValueObjects
 {
     public sealed class UserId : AggregateRootId<Guid>
     {

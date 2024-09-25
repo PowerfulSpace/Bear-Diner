@@ -1,4 +1,4 @@
-﻿using PS.BearDiner.Domain.Users;
+﻿using PS.BearDiner.Domain.UsersAggregate;
 
 namespace PS.BearDiner.Application.Common.Interfaces.Persistence
 {
