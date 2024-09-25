@@ -1,5 +1,5 @@
 ﻿using PS.BearDiner.Application.Common.Interfaces.Persistence;
-using PS.BearDiner.Domain.UsersAggregate;
+using PS.BearDiner.Domain.Users;
 
 namespace PS.BearDiner.Infrastructure.Persistence
 {
