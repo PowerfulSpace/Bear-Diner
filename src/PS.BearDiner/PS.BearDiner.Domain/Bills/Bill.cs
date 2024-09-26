@@ -15,9 +15,10 @@ namespace PS.BearDiner.Domain.Bills
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
 
-        private Bill(BillId id, GuestId guestId, HostId hostId, Price price, DateTime createdDateTime, DateTime updatedDateTime) 
+        private Bill(BillId id, DinnerId dinnerId, GuestId guestId, HostId hostId, Price price, DateTime createdDateTime, DateTime updatedDateTime) 
             : base(id)
         {
+            DinnerId = dinnerId;
             GuestId = guestId;
             HostId = hostId;
             Price = price;
@@ -25,9 +26,9 @@ namespace PS.BearDiner.Domain.Bills
             UpdatedDateTime = updatedDateTime;
         }
 
-        public static Bill Create(GuestId guestId, HostId hostId, Price price)
+        public static Bill Create(GuestId guestId, DinnerId dinnerId, HostId hostId, Price price)
         {
-            return new Bill(BillId.CreateUnique(), guestId, hostId, price, DateTime.UtcNow, DateTime.UtcNow);
+            return new Bill(BillId.CreateUnique(), dinnerId, guestId, hostId, price, DateTime.UtcNow, DateTime.UtcNow);
         }
 
 #pragma warning disable CS8618
