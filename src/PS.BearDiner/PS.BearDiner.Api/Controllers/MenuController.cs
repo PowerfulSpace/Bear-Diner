@@ -7,10 +7,10 @@ namespace PS.BearDiner.Api.Controllers
     [Route("[controller]")]
     public class MenuController : ApiController
     {
-        [HttpPost]
-        public IActionResult CreateMenu(CreateMenuRequest request, string hostId)
+        [HttpPost("{hostId}")]
+        public IActionResult CreateMenu([FromBody] CreateMenuRequest request, string hostId)
         {
-            return Ok();
+            return Ok(request);
         }
     }
 }

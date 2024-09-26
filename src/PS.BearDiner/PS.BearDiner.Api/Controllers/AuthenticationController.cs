@@ -1,12 +1,12 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PS.BearDiner.Application.Authentication.Commands.Register;
-using PS.BearDiner.Application.Authentication.Queries.Login;
 using PS.BearDiner.Application.Authentication.Common;
+using PS.BearDiner.Application.Authentication.Queries.Login;
 using PS.BearDiner.Contracts.Authentication;
-using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
 
 namespace PS.BearDiner.Api.Controllers
 {
@@ -30,11 +30,6 @@ namespace PS.BearDiner.Api.Controllers
 
             ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
 
-            //return authResult.Match(
-            //    authResult => Ok(MapAuthResult(authResult)),
-            //    errors => Problem(errors)
-            //    );
-
             return authResult.Match(
               authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
               errors => Problem(errors)
@@ -47,13 +42,6 @@ namespace PS.BearDiner.Api.Controllers
             var query = _mapper.Map<LoginQuery>(request);
 
             ErrorOr<AuthenticationResult> authResult = await _mediator.Send(query);
-
-            //Использовать этот код для тестов
-
-            //if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
-            //{
-            //    return Problem(statusCode: StatusCodes.Status401Unauthorized, title: authResult.FirstError.Description);
-            //}
 
             return authResult.Match(
                authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
