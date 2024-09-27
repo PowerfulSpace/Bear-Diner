@@ -1,6 +1,8 @@
 ﻿using ErrorOr;
 using MediatR;
+using PS.BearDiner.Domain.Hosts.ValueObjects;
 using PS.BearDiner.Domain.Menus;
+using PS.BearDiner.Domain.Menus.Entities;
 
 namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
 {
@@ -11,9 +13,15 @@ namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
             await Task.CompletedTask;
 
             var menu = Menu.Create(
-                request.HistId,
-                request.Name,
-                request.Description);
+                hostId: HostId.Create(request.HostId),
+                name: request.Name,
+                description: request.Description,
+                sections: request.Sections.ConvertAll(section => MenuSection.Create(
+                    section.Name,
+                    section.Description,
+                    section.Items.ConvertAll(item => MenuItem.Create(
+                        item.Name,
+                        item.Description)))));
 
             return default!;
         }
