@@ -32,7 +32,6 @@ namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
 
             _menuRepository.Add(menu);
 
-
             return menu;
         }
     }

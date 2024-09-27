@@ -8,7 +8,7 @@
         List<MenuSectionResponse> Sections,
         string HostId,
         List<string> DinnersIds,
-        List<string> MenurewiewIds,
+        List<string> MenuReviewIds,
         DateTime CreatedDateTime,
         DateTime UpdatedDateTime);
 

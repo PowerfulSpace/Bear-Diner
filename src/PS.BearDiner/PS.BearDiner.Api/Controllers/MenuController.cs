@@ -26,10 +26,10 @@ namespace PS.BearDiner.Api.Controllers
         {
             CreateMenuCommand command = _mapper.Map<CreateMenuCommand>((request, hostId));
 
-            ErrorOr<Menu> menuResult = await _mediator.Send(command);
+            ErrorOr<Menu> createMenuResult = await _mediator.Send(command);
 
-            return menuResult.Match(
-                menuResult => Ok(_mapper.Map<MenuResponse>(menuResult)),
+            return createMenuResult.Match(
+                menu => Ok(_mapper.Map<MenuResponse>(menu)),
                 errors => Problem(errors));
         }
     }
