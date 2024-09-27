@@ -5,7 +5,7 @@ using PS.BearDiner.Domain.Menus;
 namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
 {
     public record CreateMenuCommand(
-      string HistId,
+      string HostId,
       string Name,
       string Description,
       List<MenuSectionCommand> Sections) :IRequest<ErrorOr<Menu>>;

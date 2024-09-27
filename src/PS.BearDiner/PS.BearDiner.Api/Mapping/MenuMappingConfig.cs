@@ -10,7 +10,7 @@ namespace PS.BearDiner.Api.Mapping
         public void Register(TypeAdapterConfig config)
         {
             config.NewConfig<(CreateMenuRequest Request, string HostId), CreateMenuCommand>()
-                .Map(dest => dest.HistId, src => src.HostId)
+                .Map(dest => dest.HostId, src => src.HostId)
                 .Map(dest => dest, src => src.Request);
 
             config.NewConfig<Menu, MenuResponse>();

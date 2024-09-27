@@ -10,7 +10,10 @@ namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
         {
             await Task.CompletedTask;
 
-            var menu = Menu.Create()
+            var menu = Menu.Create(
+                request.HistId,
+                request.Name,
+                request.Description);
 
             return default!;
         }
