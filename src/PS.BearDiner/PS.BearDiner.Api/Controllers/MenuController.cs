@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ErrorOr;
+using MapsterMapper;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using PS.BearDiner.Application.Menus.Commands.CreateMenu;
 using PS.BearDiner.Contracts.Menus;
+using PS.BearDiner.Domain.Menus;
 
 namespace PS.BearDiner.Api.Controllers
 {
@@ -7,10 +12,25 @@ namespace PS.BearDiner.Api.Controllers
     [Route("[controller]")]
     public class MenuController : ApiController
     {
-        [HttpPost("{hostId}")]
-        public IActionResult CreateMenu([FromBody] CreateMenuRequest request, string hostId)
+        private readonly ISender _mediator;
+        private readonly IMapper _mapper;
+
+        public MenuController(ISender mediator, IMapper mapper)
         {
-            return Ok(request);
+            _mediator = mediator;
+            _mapper = mapper;
+        }
+
+        [HttpPost("{hostId}")]
+        public async Task<IActionResult> CreateMenu([FromBody] CreateMenuRequest request, string hostId)
+        {
+            CreateMenuCommand command = _mapper.Map<CreateMenuCommand>(request);
+
+            ErrorOr<Menu> menuResult = await _mediator.Send(command);
+
+            return menuResult.Match(
+                menuResult => Ok(_mapper.Map<MenuResponse>(menuResult)),
+                errors => Problem(errors));
         }
     }
 }
