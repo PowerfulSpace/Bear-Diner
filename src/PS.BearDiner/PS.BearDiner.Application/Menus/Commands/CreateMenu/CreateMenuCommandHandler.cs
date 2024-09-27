@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
+using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Domain.Hosts.ValueObjects;
 using PS.BearDiner.Domain.Menus;
 using PS.BearDiner.Domain.Menus.Entities;
@@ -8,6 +9,12 @@ namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
 {
     public class CreateMenuCommandHandler : IRequestHandler<CreateMenuCommand, ErrorOr<Menu>>
     {
+        private readonly IMenuRepository _menuRepository;
+        public CreateMenuCommandHandler(IMenuRepository menuRepository)
+        {
+            _menuRepository = menuRepository;
+        }
+
         public async Task<ErrorOr<Menu>> Handle(CreateMenuCommand request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
@@ -23,7 +30,10 @@ namespace PS.BearDiner.Application.Menus.Commands.CreateMenu
                         item.Name,
                         item.Description)))));
 
-            return default!;
+            _menuRepository.Add(menu);
+
+
+            return menu;
         }
     }
 }
