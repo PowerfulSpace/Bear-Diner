@@ -18,8 +18,17 @@ namespace PS.BearDiner.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager configuration)
         {
-            services.AddAuth(configuration);
+            services
+                .AddAuth(configuration)
+                .AddPersistance();
+
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            
+            return services;
+        }
+
+        public static IServiceCollection AddPersistance(this IServiceCollection services)
+        {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 

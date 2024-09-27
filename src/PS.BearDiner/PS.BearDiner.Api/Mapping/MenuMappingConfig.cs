@@ -13,7 +13,7 @@ namespace PS.BearDiner.Api.Mapping
                 .Map(dest => dest.HostId, src => src.HostId)
                 .Map(dest => dest, src => src.Request);
 
-            config.NewConfig<Menu, MenuResponse>();
+            //config.NewConfig<Menu, MenuResponse>();
         }
     }
 }

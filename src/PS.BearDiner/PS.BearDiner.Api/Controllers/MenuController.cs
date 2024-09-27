@@ -24,7 +24,7 @@ namespace PS.BearDiner.Api.Controllers
         [HttpPost("{hostId}")]
         public async Task<IActionResult> CreateMenu([FromBody] CreateMenuRequest request, string hostId)
         {
-            CreateMenuCommand command = _mapper.Map<CreateMenuCommand>(request);
+            CreateMenuCommand command = _mapper.Map<CreateMenuCommand>((request, hostId));
 
             ErrorOr<Menu> menuResult = await _mediator.Send(command);
 
