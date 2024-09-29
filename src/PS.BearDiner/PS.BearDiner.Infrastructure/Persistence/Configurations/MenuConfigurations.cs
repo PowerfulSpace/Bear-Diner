@@ -11,6 +11,7 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
             ConfigureMenusTable(builder);
+            ConfigureMenuSectionsTable(builder);
         }
 
         private void ConfigureMenusTable(EntityTypeBuilder<Menu> builder)
@@ -37,6 +38,32 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
                 .HasConversion(
                     id => id.Value,
                     value => HostId.Create(value));
+        }
+
+        private void ConfigureMenuSectionsTable(EntityTypeBuilder<Menu> builder)
+        {
+            builder.OwnsMany(m => m.Sections, sb =>
+            {
+                sb.ToTable("MenuSections");
+
+                sb.WithOwner().HasForeignKey("MenuId");
+
+                sb.HasKey("Id", "MenuSectionId");
+
+                sb.Property(sb => sb.Id)
+                    .HasColumnName("MenuSectionId")
+                    .ValueGeneratedNever()
+                    .HasConversion(
+                        id => id.Value,
+                        value => MenuSectionId.Create(value));
+
+                sb.Property(m => m.Name)
+                    .HasMaxLength(100);
+
+                sb.Property(m => m.Description)
+                    .HasMaxLength(100);
+            });
+
         }
 
     }
