@@ -5,10 +5,17 @@ namespace PS.BearDiner.Infrastructure.Persistence.Repositories
 {
     public class MenuRepository : IMenuRepository
     {
-        public static readonly List<Menu> _menus = new List<Menu>();
+        private readonly BearDinerDbContext _dbContext;
+
+        public MenuRepository(BearDinerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void Add(Menu menu)
         {
-            _menus.Add(menu);
+            _dbContext.Menus.Add(menu);
+            _dbContext.SaveChanges();
         }
     }
 }

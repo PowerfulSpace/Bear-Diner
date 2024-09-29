@@ -1,4 +1,5 @@
-﻿using PS.BearDiner.Domain.Common.Models;
+﻿using ErrorOr;
+using PS.BearDiner.Domain.Common.Models;
 
 namespace PS.BearDiner.Domain.Menus.ValueObjects
 {
@@ -13,7 +14,7 @@ namespace PS.BearDiner.Domain.Menus.ValueObjects
 
         public static MenuId Create(Guid value)
         {
-            return new(value);
+            return new MenuId(value);
         }
 
         public static MenuId CreateUnique()
