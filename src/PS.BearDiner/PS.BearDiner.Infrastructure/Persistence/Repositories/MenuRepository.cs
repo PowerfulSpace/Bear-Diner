@@ -1,7 +1,7 @@
 ﻿using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Domain.Menus;
 
-namespace PS.BearDiner.Infrastructure.Persistence
+namespace PS.BearDiner.Infrastructure.Persistence.Repositories
 {
     public class MenuRepository : IMenuRepository
     {

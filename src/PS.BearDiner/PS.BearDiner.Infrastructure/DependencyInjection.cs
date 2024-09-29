@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -8,6 +9,7 @@ using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Application.Common.Interfaces.Services;
 using PS.BearDiner.Infrastructure.Autentication;
 using PS.BearDiner.Infrastructure.Persistence;
+using PS.BearDiner.Infrastructure.Persistence.Repositories;
 using PS.BearDiner.Infrastructure.Services;
 using System.Text;
 
@@ -29,7 +31,7 @@ namespace PS.BearDiner.Infrastructure
 
         public static IServiceCollection AddPersistance(this IServiceCollection services)
         {
-            services.AddDbContext<BearDinerDbContext>();
+            services.AddDbContext<BearDinerDbContext>(options => options.UseSqlServer());
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
