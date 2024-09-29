@@ -29,6 +29,8 @@ namespace PS.BearDiner.Infrastructure
 
         public static IServiceCollection AddPersistance(this IServiceCollection services)
         {
+            services.AddDbContext<BearDinerDbContext>();
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 
