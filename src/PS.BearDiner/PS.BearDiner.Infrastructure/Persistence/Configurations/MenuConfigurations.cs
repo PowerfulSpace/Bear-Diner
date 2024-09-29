@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PS.BearDiner.Domain.Hosts.ValueObjects;
 using PS.BearDiner.Domain.Menus;
 using PS.BearDiner.Domain.Menus.ValueObjects;
 
@@ -31,7 +32,11 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
                 .HasMaxLength(100);
 
             builder.OwnsOne(m => m.AverageRating);
-            
+
+            builder.Property(m => m.HostId)
+                .HasConversion(
+                    id => id.Value,
+                    value => HostId.Create(value));
         }
 
     }
