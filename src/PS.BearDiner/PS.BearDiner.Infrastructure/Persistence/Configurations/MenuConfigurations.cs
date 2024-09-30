@@ -135,6 +135,5 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
             builder.Metadata.FindNavigation(nameof(Menu.MenuReviewIds))!
                 .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
-
     }
 }
