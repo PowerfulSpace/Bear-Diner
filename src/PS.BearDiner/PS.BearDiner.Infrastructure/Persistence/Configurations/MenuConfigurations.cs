@@ -50,7 +50,7 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
 
                 sb.WithOwner().HasForeignKey("MenuId");
 
-                sb.HasKey("Id", "MenuSectionId");
+                sb.HasKey("Id", "MenuId");
 
                 sb.Property(sb => sb.Id)
                     .HasColumnName("MenuSectionId")

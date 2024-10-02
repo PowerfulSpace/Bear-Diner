@@ -10,5 +10,13 @@ namespace PS.BearDiner.Infrastructure.Persistence
         }
 
         public DbSet<Menu> Menus { get; set; } = null!;
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BearDinerDbContext).Assembly);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

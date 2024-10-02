@@ -8,8 +8,8 @@ namespace PS.BearDiner.Domain.Menus.Entities
         private readonly List<MenuItem> _items = new List<MenuItem>();
         public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
 
-        public string Name { get; set; }
-        public string Description { get; set; }        
+        public string Name { get; private set; }
+        public string Description { get; private set; }        
         
 
         private MenuSection(MenuSectionId menuSectionId, string name, string description, List<MenuItem> items)
