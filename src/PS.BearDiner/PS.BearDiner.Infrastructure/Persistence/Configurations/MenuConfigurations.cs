@@ -100,20 +100,24 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
 
         private void ConfigureMenuDinnerIdsTable(EntityTypeBuilder<Menu> builder)
         {
-            builder.OwnsMany(m => m.DinnerIds, dib =>
+            builder.OwnsMany(m => m.DinnerIds, dinnerBuilder =>
             {
-                dib.ToTable("MenuDinnerIds");
+                dinnerBuilder.ToTable("MenuDinnerIds");
 
-                dib.WithOwner().HasForeignKey("MenuId");
+                dinnerBuilder
+                    .WithOwner()
+                    .HasForeignKey("MenuId");
 
-                dib.HasKey("Id");
+                dinnerBuilder.HasKey("Id");
 
-                dib.Property(d => d.Value)
+                dinnerBuilder
+                    .Property(d => d.Value)
                     .HasColumnName("DinnerId")
-                .ValueGeneratedNever();
+                    .ValueGeneratedNever();
             });
 
-            builder.Metadata.FindNavigation(nameof(Menu.DinnerIds))!
+            builder.Metadata
+                .FindNavigation(nameof(Menu.DinnerIds))!
                 .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
 
