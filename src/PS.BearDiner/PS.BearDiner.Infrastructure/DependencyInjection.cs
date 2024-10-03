@@ -22,16 +22,17 @@ namespace PS.BearDiner.Infrastructure
         {
             services
                 .AddAuth(configuration)
-                .AddPersistance();
+                .AddPersistance(configuration);
 
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             
             return services;
         }
 
-        public static IServiceCollection AddPersistance(this IServiceCollection services)
+        public static IServiceCollection AddPersistance(this IServiceCollection services, ConfigurationManager configuration)
         {
-            services.AddDbContext<BearDinerDbContext>(options => options.UseSqlServer());
+            services.AddDbContext<BearDinerDbContext>(options => 
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
