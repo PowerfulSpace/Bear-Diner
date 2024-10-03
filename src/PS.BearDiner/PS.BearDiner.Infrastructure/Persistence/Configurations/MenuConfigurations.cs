@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PS.BearDiner.Domain.Hosts.ValueObjects;
 using PS.BearDiner.Domain.Menus;
+using PS.BearDiner.Domain.Menus.Entities;
 using PS.BearDiner.Domain.Menus.ValueObjects;
 
 namespace PS.BearDiner.Infrastructure.Persistence.Configurations
@@ -48,59 +49,81 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
 
         private void ConfigureMenuSectionsTable(EntityTypeBuilder<Menu> builder)
         {
-            builder.OwnsMany(m => m.Sections, sb =>
+            builder.OwnsMany(m => m.Sections, sectionBuilder =>
             {
-                sb.ToTable("MenuSections");
+                sectionBuilder.ToTable("MenuSections");
 
-                sb.WithOwner().HasForeignKey("MenuId");
+                sectionBuilder
+                    .WithOwner()
+                    .HasForeignKey("MenuId");
 
-                sb.HasKey("Id", "MenuId");
+                sectionBuilder.HasKey("Id", "MenuId");
 
-                sb.Property(sb => sb.Id)
+                sectionBuilder
+                    .Property(sb => sb.Id)
                     .HasColumnName("MenuSectionId")
                     .ValueGeneratedNever()
                     .HasConversion(
                         id => id.Value,
                         value => MenuSectionId.Create(value));
 
-                sb.Property(m => m.Name)
+                sectionBuilder
+                    .Property(m => m.Name)
                     .HasMaxLength(100);
 
-                sb.Property(m => m.Description)
+                sectionBuilder
+                    .Property(m => m.Description)
                     .HasMaxLength(100);
 
 
-                sb.OwnsMany(s => s.Items, ib =>
-                {
-                    ib.ToTable("MenuItems");
+                sectionBuilder.OwnsMany(
+                    s => s.Items,
+                    itemBuilder => ConfigureMenuItemsTable(itemBuilder));
 
-                    ib.WithOwner().HasForeignKey("MenuSectionId", "MenuId");
 
-                    ib.HasKey(nameof(MenuItemId),"MenuSectionId", "MenuId");
+                sectionBuilder
+                    .Navigation(s => s.Items).Metadata
+                    .SetField("_items");
 
-                    ib.Property(i => i.Id)
-                        .HasColumnName("MenuItemId")
-                        .ValueGeneratedNever()
-                        .HasConversion(
-                            id => id.Value,
-                            value => MenuItemId.Create(value));
-
-                    ib.Property(m => m.Name)
-                        .HasMaxLength(100);
-
-                    ib.Property(m => m.Description)
-                        .HasMaxLength(100);
-                });
-
-                sb.Navigation(s => s.Items).Metadata.SetField("_items");
-                sb.Navigation(s => s.Items).UsePropertyAccessMode(PropertyAccessMode.Field);
+                sectionBuilder
+                    .Navigation(s => s.Items)
+                    .UsePropertyAccessMode(PropertyAccessMode.Field);
 
             });
 
 
-            builder.Metadata.FindNavigation(nameof(Menu.Sections))!
+            builder.Metadata
+                .FindNavigation(nameof(Menu.Sections))!
                 .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
+
+        private static void ConfigureMenuItemsTable(OwnedNavigationBuilder<MenuSection, MenuItem> itemBuilder)
+        {
+            itemBuilder.ToTable("MenuItems");
+
+            itemBuilder
+                .WithOwner()
+                .HasForeignKey("MenuSectionId", "MenuId");
+
+            itemBuilder.HasKey(nameof(MenuItem.Id), "MenuSectionId", "MenuId");
+
+            itemBuilder
+                .Property(i => i.Id)
+                .HasColumnName("MenuItemId")
+                .ValueGeneratedOnAdd()
+                .HasConversion(
+                    id => id.Value,
+                    value => MenuItemId.Create(value));
+
+            itemBuilder
+                .Property(i => i.Name)
+                .HasMaxLength(100);
+
+            itemBuilder
+                .Property(i => i.Description)
+                .HasMaxLength(100);
+        }
+
 
         private void ConfigureMenuDinnerIdsTable(EntityTypeBuilder<Menu> builder)
         {
