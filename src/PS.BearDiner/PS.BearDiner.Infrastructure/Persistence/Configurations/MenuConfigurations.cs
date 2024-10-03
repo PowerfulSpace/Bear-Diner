@@ -119,20 +119,24 @@ namespace PS.BearDiner.Infrastructure.Persistence.Configurations
 
         private void ConfigureMenuReviewIdsTable(EntityTypeBuilder<Menu> builder)
         {
-            builder.OwnsMany(m => m.MenuReviewIds, dib =>
+            builder.OwnsMany(m => m.MenuReviewIds, reviewBuilder =>
             {
-                dib.ToTable("MenuReviewIds");
+                reviewBuilder.ToTable("MenuReviewIds");
 
-                dib.WithOwner().HasForeignKey("MenuId");
+                reviewBuilder
+                    .WithOwner()
+                    .HasForeignKey("MenuId");
 
-                dib.HasKey("Id");
+                reviewBuilder.HasKey("Id");
 
-                dib.Property(d => d.Value)
+                reviewBuilder
+                    .Property(d => d.Value)
                     .HasColumnName("ReviewId")
-                .ValueGeneratedNever();
+                    .ValueGeneratedNever();
             });
 
-            builder.Metadata.FindNavigation(nameof(Menu.MenuReviewIds))!
+            builder.Metadata
+                .FindNavigation(nameof(Menu.MenuReviewIds))!
                 .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
