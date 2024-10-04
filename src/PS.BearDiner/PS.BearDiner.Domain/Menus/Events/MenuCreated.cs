@@ -2,5 +2,5 @@
 
 namespace PS.BearDiner.Domain.Menus.Events
 {
-    public record MenuCreated(Menu menu) : IDomainEvent;
+    public record MenuCreated(Menu Menu) : IDomainEvent;
 }

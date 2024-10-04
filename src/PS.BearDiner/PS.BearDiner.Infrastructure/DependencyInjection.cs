@@ -9,6 +9,7 @@ using PS.BearDiner.Application.Common.Interfaces.Persistence;
 using PS.BearDiner.Application.Common.Interfaces.Services;
 using PS.BearDiner.Infrastructure.Autentication;
 using PS.BearDiner.Infrastructure.Persistence;
+using PS.BearDiner.Infrastructure.Persistence.Interceptors;
 using PS.BearDiner.Infrastructure.Persistence.Repositories;
 using PS.BearDiner.Infrastructure.Services;
 using System.Text;
@@ -33,6 +34,8 @@ namespace PS.BearDiner.Infrastructure
         {
             services.AddDbContext<BearDinerDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<PublishDomainEventsInterceptor>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();

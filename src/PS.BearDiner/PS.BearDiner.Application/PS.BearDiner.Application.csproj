@@ -17,4 +17,11 @@
     <ProjectReference Include="..\PS.BearDiner.Domain\PS.BearDiner.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dinners\Commands\" />
+    <Folder Include="Dinners\Events\" />
+    <Folder Include="Dinners\Queries\" />
+    <Folder Include="Menus\Queries\" />
+  </ItemGroup>
+
 </Project>
