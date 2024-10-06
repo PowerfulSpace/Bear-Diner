@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PS.BearDiner\PS.BearDiner.Application\PS.BearDiner.Application.csproj" />
+    <ProjectReference Include="..\..\src\PS.BearDiner\PS.BearDiner.Domain\PS.BearDiner.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
