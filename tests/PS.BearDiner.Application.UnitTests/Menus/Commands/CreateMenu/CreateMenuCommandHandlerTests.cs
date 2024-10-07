@@ -18,10 +18,12 @@ namespace PS.BearDiner.Application.UnitTests.Menus.Commands.CreateMenu
             _handler = new CreateMenuCommandHandler(_mockMenuRepository.Object);
         }
 
-        public async Task CreateMenuCommandHandler_WhenMenuIsValid_ShouldCreateAndReturnMenu()
+        [Theory]
+        [MemberData(nameof(ValidCreateMenuCommands))]
+        public async Task CreateMenuCommandHandler_WhenMenuIsValid_ShouldCreateAndReturnMenu(CreateMenuCommand CreateMenuCommand)
         {
             //Arrange
-            var CreateMenuCommand = CreateMenuCommandUtils.CreateCommand();
+            //CreateMenuCommand CreateMenuCommand = CreateMenuCommandUtils.CreateCommand();
 
             //Act
             //Invoke the handler
@@ -34,6 +36,25 @@ namespace PS.BearDiner.Application.UnitTests.Menus.Commands.CreateMenu
 
             // 1. Validate correct menu created based on command
             // 2. Menu added to repository
+        }
+
+        public static IEnumerable<object[]> ValidCreateMenuCommands()
+        {
+            yield return new object[] { CreateMenuCommandUtils.CreateCommand() };
+
+            yield return new object[]
+            {
+                CreateMenuCommandUtils.CreateCommand(
+                    sections: CreateMenuCommandUtils.CreateSectionsCommand(sectionCount: 3))
+            };
+
+            yield return new object[]
+            {
+                CreateMenuCommandUtils.CreateCommand(
+                    sections: CreateMenuCommandUtils.CreateSectionsCommand(
+                        sectionCount: 3,
+                        items: CreateMenuCommandUtils.CreateItemsCommand(itemCount: 3)))
+            };
         }
     }
 }

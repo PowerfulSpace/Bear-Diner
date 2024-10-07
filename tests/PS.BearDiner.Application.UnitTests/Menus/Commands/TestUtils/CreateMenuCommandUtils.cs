@@ -6,19 +6,21 @@ namespace PS.BearDiner.Application.UnitTests.Menus.Commands.TestUtils
 {
     public class CreateMenuCommandUtils
     {
-        public static CreateMenuCommand CreateCommand() =>
+        public static CreateMenuCommand CreateCommand(List<CreateMenuSectionCommand>? sections = null) =>
             new CreateMenuCommand(
                 Guid.Parse(Constants.Host.Id.ToString()!),
                 Constants.Menu.Name,
                 Constants.Menu.Description,
-                CreateSectionsCommand());
+                sections ?? CreateSectionsCommand());
 
-        public static List<CreateMenuSectionCommand> CreateSectionsCommand(int sectionCount = 1) =>
+        public static List<CreateMenuSectionCommand> CreateSectionsCommand(
+            int sectionCount = 1,
+            List<CreateMenuItemCommand>? items = null) =>
             Enumerable.Range(0, sectionCount)
                 .Select(index => new CreateMenuSectionCommand(
                     Constants.Menu.SectionNameFromIndex(index),
                     Constants.Menu.SectionDescriptionFromIndex(index),
-                    CreateItemsCommand()))
+                    items ?? CreateItemsCommand()))
                 .ToList();
 
         public static List<CreateMenuItemCommand> CreateItemsCommand(int itemCount = 1) =>
