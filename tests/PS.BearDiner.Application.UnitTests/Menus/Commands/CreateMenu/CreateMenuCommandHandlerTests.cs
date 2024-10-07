@@ -22,6 +22,8 @@ namespace PS.BearDiner.Application.UnitTests.Menus.Commands.CreateMenu
         [MemberData(nameof(ValidCreateMenuCommands))]
         public async Task CreateMenuCommandHandler_WhenMenuIsValid_ShouldCreateAndReturnMenu(CreateMenuCommand CreateMenuCommand)
         {
+            //После тестов, удалить не используемый код
+
             //Arrange
             //CreateMenuCommand CreateMenuCommand = CreateMenuCommandUtils.CreateCommand();
 
